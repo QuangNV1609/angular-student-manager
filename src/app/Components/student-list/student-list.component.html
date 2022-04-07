@@ -1,0 +1,52 @@
+<div class="notice">Home page</div>
+<form class="search__form" [formGroup]="searchForm" (submit)="search()">
+    <input type="text" name="key" id="key" class="search__form--inp" placeholder="Student name" formControlName="key">
+    <button [class]="searchForm.valid ? 'search__form--btn' : 'search__form--btn table__control--btn--disable'">
+        <fa-icon icon="magnifying-glass"></fa-icon>
+    </button>
+</form>
+<div class="page__index">
+    <input class="page__index--input" name="page" id="page" [value]="param.page" (change)="pageChange($event)">
+    <span class="page__index--total">{{param.totalPage}}</span>
+</div>
+<table class="student__table">
+    <tr class="student__table--tr">
+        <th class="student__table--th">Name</th>
+        <th class="student__table--th">BirthDay</th>
+        <th class="student__table--th">Gender</th>
+        <th class="student__table--th">Address</th>
+        <th class="student__table--th">Phone</th>
+        <th class="student__table--th">Email</th>
+        <th class="student__table--th" *ngIf="isAdmin">Delete</th>
+    </tr>
+    <tr *ngFor="let student of studentList" class="student__table--tr">
+        <td class="student__table--td">
+            <a [routerLink]="['/student', student.id]" class="student__table--a">
+                {{student.lastName + " " + student.firstName}}
+            </a>
+        </td>
+        <td class="student__table--td">{{student.birthDay}}</td>
+        <td class="student__table--td">{{student.gender ? "Male":"Female"}}</td>
+        <td class="student__table--td">{{student.address}}</td>
+        <td class="student__table--td">{{student.phoneNumber}}</td>
+        <td class="student__table--td">{{student.email}}</td>
+        <td class="student__table--td student__table--delete" *ngIf="isAdmin">
+            <fa-icon icon="trash-can" (click)="deleteStudent(student.id)"></fa-icon>
+        </td>
+    </tr>
+</table>
+<div class="student__table--empty" *ngIf="studentList.length == 0">
+    Không có kết quả phù hợp!
+</div>
+<div class="table__control">
+    <button (click)="prevPage()" [disabled]="param.page <= 1"
+        [class]="(param.page <= 1) ? 'table__control--btn table__control--btn--disable' : 'table__control--btn'">
+        <fa-icon icon="angle-left"></fa-icon>
+    </button>
+    <span class="table__control--page">{{param.page}}</span>
+    <button (click)="nextPage()"
+        [class]="(param.page >= param.totalPage) ? 'table__control--btn table__control--btn--disable' : 'table__control--btn'"
+        [disabled]="param.page >= param.totalPage">
+        <fa-icon icon="angle-right"></fa-icon>
+    </button>
+</div>

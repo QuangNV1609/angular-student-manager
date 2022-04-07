@@ -1,0 +1,137 @@
+.search__form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin: 30px 0px;
+
+    &--inp {
+        width: 300px;
+        font-size: 1rem;
+        padding: 5px;
+        outline: none;
+    }
+
+    &--btn {
+        background-color: #038354;
+        cursor: pointer;
+        border: 1px solid #025939;
+        padding: 6px 10px;
+        color: #fff;
+        font-size: 1rem;
+    }
+}
+
+.student__table {
+    border-collapse: collapse;
+    width: 100%;
+    border: 1px solid #ddd;
+    text-align: left;
+    color: #333;
+
+    &--a {
+        color: #333;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &--empty {
+        width: 100%;
+        margin: 30px;
+        text-align: center;
+        font-size: 1.6rem;
+    }
+
+    &--delete {
+        text-align: center !important;
+    }
+
+    &--th,
+    &--td {
+        text-align: left;
+        padding: 8px;
+        border: 1px solid #ddd;
+        text-align: left;
+    }
+
+    &--tr {
+        cursor: pointer;
+    }
+
+    &--tr:nth-child(even) {
+        background-color: #f2f2f2
+    }
+
+    &--th {
+        background-color: #04AA6D;
+        color: white;
+    }
+}
+
+.table__control {
+    margin: 30px auto;
+    text-align: center;
+
+    &--btn {
+        cursor: pointer;
+        font-size: 1rem;
+        background: #038354;
+        color: #fff;
+        border: 1px solid #025939;
+        padding: 5px 15px;
+        border-radius: 3px;
+
+        &:hover {
+            opacity: 0.9;
+        }
+
+        &--disable {
+            cursor: not-allowed;
+            opacity: 0.5;
+
+            &:hover {
+                opacity: 0.5;
+            }
+        }
+
+    }
+
+    &--page {
+        margin: 0px 10px;
+    }
+
+    &--btn+&--btn {
+        margin-left: 15px;
+
+    }
+}
+
+.page__index {
+    font-size: 1rem;
+    text-align: end;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+    width: 100%;
+
+
+    &--input {
+        width: 15px;
+        outline: none;
+        text-align: center;
+        padding: 5px;
+        outline: none;
+        margin-bottom: 10px;
+    }
+
+    &--total {
+        background-color: #038354;
+        padding: 5px 10px;
+        color: #fff;
+        margin-right: 10px;
+        margin-bottom: 10px;
+    }
+}

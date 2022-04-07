@@ -1,0 +1,99 @@
+<div class="notice">
+    Student Details
+</div>
+<form class="student__form" [formGroup]="studentForm" (submit)="editStudent()" *ngIf="!notFound">
+    <div>
+        <div class="student__form--info">
+            <div class="student__form--item">
+                <label for="lastname" class="student__form--label">Lastname: </label>
+                <input type="text" name="lastname" id="lastname"
+                    [class]="isAdmin ? 'student__form--inp' : 'student__form--inp--user'" formControlName="lastName"
+                    placeholder="Lastname" [value]="student?.lastName" autofocus [readonly]="!isAdmin">
+                <div class="student__form--error" *ngIf="!this.studentForm.controls['lastName'].valid">
+                    Error
+                </div>
+            </div>
+            <div class="student__form--item">
+                <label for="firstname" class="student__form--label">Firstname: </label>
+                <input type="text" name="firstname" id="firstname"
+                    [class]="isAdmin ? 'student__form--inp' : 'student__form--inp--user'" formControlName="firstName"
+                    placeholder="Firstname" [value]="student?.firstName" [readonly]="!isAdmin">
+                <div class="student__form--error" *ngIf="!this.studentForm.controls['firstName'].valid">
+                    Error
+                </div>
+            </div>
+            <div class="student__form--item">
+                <div *ngIf="!isAdmin">
+                    <span>BirthDay: </span>
+                    <span>
+                        {{student?.birthDay}}
+                    </span>
+                </div>
+                <div class="student__form--text" *ngIf="isAdmin">BirthDay: </div>
+                <form-date *ngIf="isAdmin" (dateEvent)="setDate($event)" [inputBirthDay]="student?.birthDay">
+                </form-date>
+            </div>
+            <div class="student__form--item">
+                <span>Gender: </span>
+                <div class="student__form--gender" *ngIf="isAdmin">
+                    <div>
+                        <label for="male" class="student__form--label">Male</label>
+                        <input type="radio" name="gender" id="male" class="student__form--radio" [value]="Gender.MALE"
+                            formControlName="gender" [checked]="studentGender == Gender.MALE">
+                    </div>
+                    <div>
+                        <label for="female" class="student__form--label">Female</label>
+                        <input type="radio" name="gender" id="female" class="student__form--radio"
+                            [value]="Gender.FEMALE" formControlName="gender" [checked]="studentGender == Gender.FEMALE">
+                    </div>
+                </div>
+                <span *ngIf="!isAdmin">
+                    {{student?.gender ? 'Male' : 'Female'}}
+                </span>
+            </div>
+        </div>
+        <div class="student__form--contact">
+            <div class="student__form--item">
+                <label for="address">Address: </label>
+                <input type="text" name="address" id="address"
+                    [class]="isAdmin ? 'student__form--inp' : 'student__form--inp--user'" formControlName="address"
+                    placeholder="Address" [value]="student?.address" [readonly]="!isAdmin">
+                <div class="student__form--error" *ngIf="!this.studentForm.controls['address'].valid">
+                    Error
+                </div>
+            </div>
+            <div class="student__form--item">
+                <label for="phonenumber">Phone: </label>
+                <input type="text" name="phonenumber" id="phonenumber"
+                    [class]="isAdmin ? 'student__form--inp' : 'student__form--inp--user'" formControlName="phoneNumber"
+                    placeholder="Phone" [value]="student?.phoneNumber" [readonly]="!isAdmin">
+                <div class="student__form--error" *ngIf="!studentForm.controls['phoneNumber'].valid">
+                    Error
+                </div>
+            </div>
+            <div class="student__form--item">
+                <label for="email" class="student__form--label">Email: </label>
+                <input type="text" name="email" id="email"
+                    [class]="isAdmin ? 'student__form--inp' : 'student__form--inp--user'" formControlName="email"
+                    placeholder="Email" [value]="student?.email" [readonly]="!isAdmin">
+                <div class="student__form--error" *ngIf="!this.studentForm.controls['email'].valid">
+                    Error
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <button *ngIf="isAdmin"
+            [class]="(!studentForm.valid || !birthDay) ?'student__form--btn student__form--btn--disable': 'student__form--btn'"
+            [disabled]="!studentForm.valid || !birthDay">Edit
+        </button>
+    </div>
+</form>
+<div class="delete" style="text-align: end;" *ngIf="!notFound && isAdmin">
+    <button class="student__form--btn" (click)="deleteStudent()">
+        <fa-icon icon="trash-can"></fa-icon>
+    </button>
+</div>
+<div class="student__notFound" *ngIf="notFound">
+    StudentId doesn't exist
+</div>

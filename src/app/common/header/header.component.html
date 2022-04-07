@@ -1,0 +1,11 @@
+<header class="header">
+    <span class="header__logo">Student Manager</span>
+    <div class="header__right">
+        <a [class]="active == 'home' ? 'header__link header__link--active' : 'header__link'" routerLink="student/home"
+            (click)="onClick('home')">Home</a>
+        <a [class]="active == 'add' ? 'header__link header__link--active' : 'header__link'" routerLink="/student/add"
+            (click)="onClick('add')">Add</a>
+        <a [class]="active == 'logout' ? 'header__link header__link--active' : 'header__link'" routerLink="/login"
+            (click)="logout()">Logout</a>
+    </div>
+</header>

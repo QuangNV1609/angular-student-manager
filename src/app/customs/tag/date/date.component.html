@@ -1,0 +1,15 @@
+<span class="date__custom--selects">
+    <select name="date" id="day" class="date__custom--select" #day (change)="handlerSelectChange({day: day.value})">
+        <option *ngFor="let day of days" [value]="day" [selected]="currentBirthDay.getDate() == day">{{day}}</option>
+    </select>
+    <select name="date" id="mouth" class="date__custom--select" #mouth
+        (change)="handlerSelectChange({mouth: mouth.value})">
+        <option *ngFor="let mouth of mouths" [value]="mouth" [selected]="currentBirthDay.getMonth() + 1 == mouth">{{mouth}}</option>
+    </select>
+    <select name="date" id="year" class="date__custom--select" #year (change)="handlerSelectChange({year: year.value})">
+        <option *ngFor="let year of years" [value]="year" [selected]="currentBirthDay.getFullYear() == year">{{year}}</option>
+    </select>
+</span>
+<div class="date__custom--fails" *ngIf="!isFormat">
+    Fails
+</div>

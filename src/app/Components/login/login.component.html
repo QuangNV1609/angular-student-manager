@@ -1,0 +1,19 @@
+<div style="display: flex; justify-content: center;">
+    <form class="login__form" [formGroup]="loginForm" (submit)="login()">
+        <div class="login__form--item">
+            <label for="" class="login__form--label">
+                Username
+            </label>
+            <input type="text" name="username" id="username" class="login__form--inp" formControlName="username"
+                placeholder="Username">
+        </div>
+        <div class="login__form--item">
+            <label for="" class="login__form--label">
+                Password
+            </label>
+            <input type="text" name="password" id="password" class="login__form--inp" formControlName="password"
+                placeholder="Password">
+        </div>
+        <button class="login__form--btn">Login</button>
+    </form>
+</div>
